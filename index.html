@@ -9,13 +9,45 @@
       .fail{
         color: red;
       }
+
+      h1{
+        text-align: center;
+      }
+      .code {
+        background-color: lightgrey;
+        border: 2px solid grey;
+        border-radius: 10px;
+        width: 50%;
+      }
     </style>
   </head>
   <body>
-    <ul id="results">
-      <li>Hello Ninja!</li>
-    </ul>
-
+    <h1>Js Algoritms</h1>
+    <h3>Fast Sort</h3>
+    <div class='code'>
+      <code>
+        <pre>
+          const quickSort = function (arr) {
+            if (arr.length < 2) {
+              return arr;
+            } else {
+              let base = arr[0];
+              let less = [];
+              let greater = [];
+    
+              for(let i = 1; i < arr.length; i++){
+                if (arr[i] <= base){
+                  less.push(arr[i]);
+                } else {
+                  greater.push(arr[i]);
+                }
+              }
+              return quickSort(less).concat(base, quickSort(greater));
+            }
+          };
+        </pre>
+      </code>
+    </div>
     <script>
       // Быстрая сортировка
 
