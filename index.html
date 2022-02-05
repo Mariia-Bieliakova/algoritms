@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Web app lifecycle</title>
-    <style>
-      .pass{
-        color: green;
-      }
-      .fail{
-        color: red;
-      }
 
-      h1{
-        text-align: center;
-      }
-      .code {
-        background-color: lightgrey;
-        border: 2px solid grey;
-        border-radius: 10px;
-        width: 50%;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Js Algoritms</h1>
-    <h3>Fast Sort</h3>
-    <div class='code'>
-      <code>
-        <pre>
+<head>
+  <title>Web app lifecycle</title>
+  <style>
+    .pass {
+      color: green;
+    }
+
+    .fail {
+      color: red;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .code {
+      background-color: lightgrey;
+      border: 2px solid grey;
+      border-radius: 10px;
+      width: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Js Algoritms</h1>
+  <h3>Fast Sort</h3>
+  <div class='code'>
+    <code>
+      <pre>
           const quickSort = function (arr) {
             if (arr.length < 2) {
               return arr;
@@ -46,170 +50,170 @@
             }
           };
         </pre>
-      </code>
-    </div>
-    <script>
-      // Быстрая сортировка
+    </code>
+  </div>
+  <script>
+    // Быстрая сортировка
 
-      const quickSort = function (arr) {
-        if (arr.length < 2) {
-          return arr;
-        } else {
-          let base = arr[0];
-          let less = [];
-          let greater = [];
+    const quickSort = function (arr) {
+      if (arr.length < 2) {
+        return arr;
+      } else {
+        let base = arr[0];
+        let less = [];
+        let greater = [];
 
-          for(let i = 1; i < arr.length; i++){
-            if (arr[i] <= base){
-              less.push(arr[i]);
-            } else {
-              greater.push(arr[i]);
-            }
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] <= base) {
+            less.push(arr[i]);
+          } else {
+            greater.push(arr[i]);
           }
-          return quickSort(less).concat(base, quickSort(greater));
         }
-      };
+        return quickSort(less).concat(base, quickSort(greater));
+      }
+    };
 
-      console.log(quickSort([5,8,1,0,10,6,2]));
+    console.log(quickSort([5, 8, 1, 0, 10, 6, 2]));
 
-      //Рекурсия
+    //Рекурсия
 
-      let countdown = function (i) {
-        console.log(i);
+    let countdown = function (i) {
+      console.log(i);
 
-        if (i <= 0) {
-          return;
-        } else {
-          return countdown(i-1);
-        }
-      };
+      if (i <= 0) {
+        return;
+      } else {
+        return countdown(i - 1);
+      }
+    };
 
-      const factorial = function (x) {
-        if (x == 1) {
-          return 1;
-        } else {
-          return x * factorial(x-1);
-        }
-      };
+    const factorial = function (x) {
+      if (x == 1) {
+        return 1;
+      } else {
+        return x * factorial(x - 1);
+      }
+    };
 
-      const sum = function (arr) {
-        if(arr.length == 1) {
+    const sum = function (arr) {
+      if (arr.length == 1) {
+        return arr[0];
+      } else {
+        return arr.shift() + sum(arr);
+      }
+    };
+
+    const arrLength = function (arr) {
+      if (arr.length < 1) {
+        return 0;
+      } else {
+        arr.shift();
+        return 1 + arrLength(arr);
+      }
+    };
+
+    const max = function (arr) {
+      if (arr.length == 2) {
+        if (arr[0] > arr[1]) {
           return arr[0];
         } else {
-          return arr.shift() + sum(arr);
+          return arr[1];
         }
-      };
+      } else {
+        maximum = arr.shift();
 
-      const arrLength = function (arr) {
-        if (arr.length < 1) {
-          return 0;
+        subMax = max(arr);
+
+        if (maximum > subMax) {
+          return maximum;
         } else {
-          arr.shift();
-          return 1 + arrLength(arr);
+          return subMax;
         }
-      };
+      }
+    };
+    console.log(max([3, 5, 7, 1, 8, 1, 0, 8, 9, 2]));
+    // Сортировка выбором
 
-      const max = function (arr) {
-        if(arr.length == 2) {
-          if(arr[0] > arr[1]){
-            return arr[0];
-          } else{
-            return arr[1];
-          }
-        }else {
-          maximum = arr.shift();
-          
-          subMax = max(arr);
-          
-          if (maximum > subMax) {
-            return maximum;
-          } else {
-            return subMax;
+    const selectionSort = function (arr) {
+
+      for (let i = 0; i < arr.length; i++) {
+        let min = i;
+
+        for (let j = i; j < arr.length; j++) {
+          if (arr[j] < arr[min]) {
+            min = j;
           }
         }
-      };
-      console.log(max([3,5,7,1,8,1,0,8,9,2]));
-      // Сортировка выбором
-
-      const selectionSort = function (arr) {
-
-        for (let i = 0; i < arr.length; i++) {
-          let min = i;
-
-          for (let j = i;j < arr.length; j++){
-            if (arr[j] < arr[min]) {
-              min = j;
-            }
-          }
-          if (min !== i) {
-            let tmp = arr[i];
-            arr[i] = arr[min];
-            arr[min] = tmp;
-          }
+        if (min !== i) {
+          let tmp = arr[i];
+          arr[i] = arr[min];
+          arr[min] = tmp;
         }
-        return arr;
-      };
-      let myArr = [9,12,3,87,1,20,45,5,16,7];
+      }
+      return arr;
+    };
+    let myArr = [9, 12, 3, 87, 1, 20, 45, 5, 16, 7];
 
-      //Binary Search
+    //Binary Search
 
-      const array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];  
-      const item = 20;
+    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    const item = 20;
 
-      const binarySearch = function (list, item) {
-        let low = 0;
-        let high = list.length - 1;
-        
-        while (low <= high) {
-          let mid = Math.floor((low + high)/2);
-          let guess = list[mid];
+    const binarySearch = function (list, item) {
+      let low = 0;
+      let high = list.length - 1;
 
-          if(guess === item){
-            return console.log('Index of item is ' + mid);
-          } else if (guess > item) {
-            high = mid - 1;
-          } else {
-            low = mid + 1;
-          }
-        }
-        return console.log('Item is not a part of array');
-      };   
-      
-      // Хэш - таблица
+      while (low <= high) {
+        let mid = Math.floor((low + high) / 2);
+        let guess = list[mid];
 
-      let voted = {};
-
-      const checkVoter = function (name, obj) {
-        if (name in obj) {
-          console.log('Kick them out!');
+        if (guess === item) {
+          return console.log('Index of item is ' + mid);
+        } else if (guess > item) {
+          high = mid - 1;
         } else {
-          obj[name] = true;
-          console.log('Let them vote!');
+          low = mid + 1;
         }
-      };
-       
-      checkVoter("tom", voted);
-      checkVoter('mike', voted);
-      checkVoter('mike', voted);
-      
-      /*function assert(value, desc){
-        let li=document.createElement("li");
-        li.className=value ? "pass" : "fail";
-        li.appendChild(document.createTextNode(desc));
-        document.getElementById("results").appendChild(li);
       }
-      function report(text){
-        assert(true,text);
-      }
+      return console.log('Item is not a part of array');
+    };
 
-      function multiMax(first, ...remainingNumbers){
-        let sorted=remainingNumbers.sort(function(a,b){
-          return b-a;
-        });
-        return first*sorted[0];
+    // Хэш - таблица
+
+    let voted = {};
+
+    const checkVoter = function (name, obj) {
+      if (name in obj) {
+        console.log('Kick them out!');
+      } else {
+        obj[name] = true;
+        console.log('Let them vote!');
       }
-      assert(multiMax(3,1,2,3)==9,"3*3=9 (First arg, by the largest.)");*/
-        
-    </script>
-  </body>
+    };
+
+    checkVoter("tom", voted);
+    checkVoter('mike', voted);
+    checkVoter('mike', voted);
+
+    /*function assert(value, desc){
+      let li=document.createElement("li");
+      li.className=value ? "pass" : "fail";
+      li.appendChild(document.createTextNode(desc));
+      document.getElementById("results").appendChild(li);
+    }
+    function report(text){
+      assert(true,text);
+    }
+
+    function multiMax(first, ...remainingNumbers){
+      let sorted=remainingNumbers.sort(function(a,b){
+        return b-a;
+      });
+      return first*sorted[0];
+    }
+    assert(multiMax(3,1,2,3)==9,"3*3=9 (First arg, by the largest.)");*/
+  </script>
+</body>
+
 </html>
