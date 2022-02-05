@@ -27,7 +27,7 @@
 
 <body>
   <h1>Js Algoritms</h1>
-  <h3>Fast Sort</h3>
+  <h3>Fast Sort Algoritm</h3>
   <div class='code'>
     <code>
       <pre>
@@ -50,6 +50,47 @@
             }
           };
         </pre>
+    </code>
+  </div>
+  <h3>Recursion</h3>
+  <div class="code">
+    <code>
+      <pre>
+        let countdown = function (i) {
+          console.log(i);
+    
+          if (i <= 0) {
+            return;
+          } else {
+            return countdown(i - 1);
+          }
+        };
+    
+        const factorial = function (x) {
+          if (x == 1) {
+            return 1;
+          } else {
+            return x * factorial(x - 1);
+          }
+        };
+    
+        const sum = function (arr) {
+          if (arr.length == 1) {
+            return arr[0];
+          } else {
+            return arr.shift() + sum(arr);
+          }
+        };
+    
+        const arrLength = function (arr) {
+          if (arr.length < 1) {
+            return 0;
+          } else {
+            arr.shift();
+            return 1 + arrLength(arr);
+          }
+        };
+      </pre>
     </code>
   </div>
   <script>
