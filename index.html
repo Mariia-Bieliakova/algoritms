@@ -219,6 +219,50 @@
     checkVoter('mike', voted);
     checkVoter('mike', voted);
 
+    // Поиск в ширину
+
+    const graph = {
+      you: ['alice', 'bob', 'claire'],
+      bob: ['anuj', 'peggy'],
+      alice: ['peggy'],
+      claire: ['thom', 'jonny'],
+      anuj: [],
+      peggy: [],
+      thom: [],
+      jonny: []
+    };
+
+    const addDeque = (friends, deque) => {
+      for (i=0; i<friends.length; i++){
+        deque.push(friends[i]);
+      }
+    };
+
+    const isSeller = (name) => name.length < 4;
+
+    const search = () => {
+      const visited = [];
+      const deque = [];
+
+      addDeque(graph['you'], deque);
+
+      while (deque.length > 0) {
+        let person = deque.shift();
+        
+        if(!visited.includes(person)){
+          visited.push(person);
+          if (isSeller(person)){
+            console.log(person);
+            return true;
+          }
+          addDeque(graph[person], deque);
+        }
+      }
+      return false;
+    };
+    
+    search();
+
     /*function assert(value, desc){
       let li=document.createElement("li");
       li.className=value ? "pass" : "fail";
